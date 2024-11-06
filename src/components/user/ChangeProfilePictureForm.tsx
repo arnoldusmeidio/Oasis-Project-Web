@@ -19,102 +19,102 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useTranslations } from "next-intl";
 
 interface Props {
-   getUser: () => void;
+    getUser: () => void;
 }
 
 export default function ChangeProfilePictureForm({ getUser }: Props) {
-   const { user } = useUserStore();
-   const t = useTranslations("UserProfile");
+    const { user } = useUserStore();
+    const t = useTranslations("UserProfile");
 
-   const [error, setError] = useState<string | undefined>("");
-   const [success, setSuccess] = useState<string | undefined>("");
-   const [picture, setPicture] = useState(user?.pictureUrl);
+    const [error, setError] = useState<string | undefined>("");
+    const [success, setSuccess] = useState<string | undefined>("");
+    const [picture, setPicture] = useState(user?.pictureUrl);
 
-   const form = useForm<z.infer<typeof profilePictureSchema>>({
-      resolver: zodResolver(profilePictureSchema),
-      mode: "onSubmit",
-      defaultValues: {
-         pictureUrl: new File([], ""),
-      },
-   });
+    const form = useForm<z.infer<typeof profilePictureSchema>>({
+        resolver: zodResolver(profilePictureSchema),
+        mode: "onSubmit",
+        defaultValues: {
+            pictureUrl: new File([], ""),
+        },
+    });
 
-   const {
-      formState: { isSubmitting },
-   } = form;
+    const {
+        formState: { isSubmitting },
+    } = form;
 
-   const onSubmit = async (values: z.infer<typeof profilePictureSchema>) => {
-      const formData = new FormData();
-      Object.entries(values).forEach(([key, value]) => {
-         formData.append("pictureUrl", value);
-      });
+    const onSubmit = async (values: z.infer<typeof profilePictureSchema>) => {
+        const formData = new FormData();
+        Object.entries(values).forEach(([key, value]) => {
+            formData.append("pictureUrl", value);
+        });
 
-      try {
-         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/users/picture`, {
-            method: "PUT",
-            body: formData,
-            credentials: "include",
-         });
-         const data = await response.json();
-         if (!data.ok) {
-            setSuccess("");
-            setError(data.message);
-         } else {
-            setError("");
-            setSuccess(data.message);
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/v1/users/picture`, {
+                method: "PUT",
+                body: formData,
+                credentials: "include",
+            });
+            const data = await response.json();
+            if (!data.ok) {
+                setSuccess("");
+                setError(data.message);
+            } else {
+                setError("");
+                setSuccess(data.message);
 
-            getUser();
-            form.reset();
-         }
-      } catch (error) {
-         console.error(error);
-         setError(`${t("error")}`);
-      }
-   };
+                getUser();
+                form.reset();
+            }
+        } catch (error) {
+            console.error(error);
+            setError(`${t("error")}`);
+        }
+    };
 
-   return (
-      <>
-         <Avatar className="h-20 w-20 justify-self-center">
-            <AvatarImage src={picture} alt="Profile picture" />
-            <AvatarFallback>
-               <User className="h-10 w-10" />
-            </AvatarFallback>
-         </Avatar>
-         <Form {...form}>
-            <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-               <div className="space-y-4">
-                  <FormField
-                     control={form.control}
-                     name="pictureUrl"
-                     render={({ field }) => (
-                        <FormItem>
-                           <FormLabel>{t("ProfilePicture.profilePicture")}</FormLabel>
-                           <FormControl>
-                              <Input
-                                 disabled={isSubmitting}
-                                 type="file"
-                                 accept="image/*"
-                                 onChange={(event) => {
-                                    field.onChange(event.target?.files?.[0] ?? undefined);
-                                    setPicture(
-                                       event.target?.files?.[0]
-                                          ? URL.createObjectURL(event.target?.files?.[0])
-                                          : undefined,
-                                    );
-                                 }}
-                              />
-                           </FormControl>
-                           <FormMessage />
-                        </FormItem>
-                     )}
-                  />
-               </div>
-               <FormError message={error} />
-               <FormSuccess message={success} />
-               <Button className="w-full" type="submit" disabled={isSubmitting}>
-                  {t("ProfilePicture.save")}
-               </Button>
-            </form>
-         </Form>
-      </>
-   );
+    return (
+        <>
+            <Avatar className="h-20 w-20 justify-self-center">
+                <AvatarImage src={picture} alt="Profile picture" />
+                <AvatarFallback>
+                    <User className="h-10 w-10" />
+                </AvatarFallback>
+            </Avatar>
+            <Form {...form}>
+                <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+                    <div className="space-y-4">
+                        <FormField
+                            control={form.control}
+                            name="pictureUrl"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>{t("ProfilePicture.profilePicture")}</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            disabled={isSubmitting}
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={(event) => {
+                                                field.onChange(event.target?.files?.[0] ?? undefined);
+                                                setPicture(
+                                                    event.target?.files?.[0]
+                                                        ? URL.createObjectURL(event.target?.files?.[0])
+                                                        : undefined
+                                                );
+                                            }}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+                    <FormError message={error} />
+                    <FormSuccess message={success} />
+                    <Button className="w-full" type="submit" disabled={isSubmitting}>
+                        {t("ProfilePicture.save")}
+                    </Button>
+                </form>
+            </Form>
+        </>
+    );
 }

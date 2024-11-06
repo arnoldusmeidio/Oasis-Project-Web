@@ -19,84 +19,89 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 
 export default function ChangeEmailForm() {
-   const t = useTranslations("UserProfile.Email");
-   const [error, setError] = useState<string | undefined>("");
-   const [success, setSuccess] = useState<string | undefined>("");
+    const t = useTranslations("UserProfile.Email");
+    const [error, setError] = useState<string | undefined>("");
+    const [success, setSuccess] = useState<string | undefined>("");
 
-   const searchParams = useSearchParams();
-   const errorMessage = searchParams.get("error");
+    const searchParams = useSearchParams();
+    const errorMessage = searchParams.get("error");
 
-   useEffect(() => {
-      if (errorMessage) setError(errorMessage);
-   }, []);
+    useEffect(() => {
+        if (errorMessage) setError(errorMessage);
+    }, []);
 
-   const { user } = useUserStore();
+    const { user } = useUserStore();
 
-   const router = useRouter();
+    const router = useRouter();
 
-   const form = useForm<z.infer<typeof emailVerificationSchema>>({
-      resolver: zodResolver(emailVerificationSchema),
-      mode: "onBlur",
-      defaultValues: {
-         email: user?.email,
-      },
-   });
+    const form = useForm<z.infer<typeof emailVerificationSchema>>({
+        resolver: zodResolver(emailVerificationSchema),
+        mode: "onBlur",
+        defaultValues: {
+            email: user?.email,
+        },
+    });
 
-   const {
-      formState: { isSubmitting },
-   } = form;
+    const {
+        formState: { isSubmitting },
+    } = form;
 
-   const onSubmit = async (values: z.infer<typeof emailVerificationSchema>) => {
-      try {
-         const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/api/v1/auth/user/email`, {
-            method: "POST",
-            headers: {
-               "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
-            credentials: "include",
-         });
-         const data = await response.json();
+    const onSubmit = async (values: z.infer<typeof emailVerificationSchema>) => {
+        try {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_API_URL}/v1/auth/user/email`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(values),
+                credentials: "include",
+            });
+            const data = await response.json();
 
-         if (!data.ok) {
-            setSuccess("");
-            setError(data.message);
-         } else {
-            setError("");
-            setSuccess(data.message);
-            form.reset();
-            router.refresh();
-         }
-      } catch (error) {
-         console.error(error);
-         setError("Something went wrong!");
-      }
-   };
+            if (!data.ok) {
+                setSuccess("");
+                setError(data.message);
+            } else {
+                setError("");
+                setSuccess(data.message);
+                form.reset();
+                router.refresh();
+            }
+        } catch (error) {
+            console.error(error);
+            setError("Something went wrong!");
+        }
+    };
 
-   return (
-      <Form {...form}>
-         <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-4">
-               <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                     <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                           <Input {...field} disabled={isSubmitting} placeholder="john.doe@email.com" type="email" />
-                        </FormControl>
-                        <FormMessage />
-                     </FormItem>
-                  )}
-               />
-            </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button className="w-full" type="submit" disabled={isSubmitting}>
-               {t("save")}
-            </Button>
-         </form>
-      </Form>
-   );
+    return (
+        <Form {...form}>
+            <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+                <div className="space-y-4">
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                    <Input
+                                        {...field}
+                                        disabled={isSubmitting}
+                                        placeholder="john.doe@email.com"
+                                        type="email"
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
+                <FormError message={error} />
+                <FormSuccess message={success} />
+                <Button className="w-full" type="submit" disabled={isSubmitting}>
+                    {t("save")}
+                </Button>
+            </form>
+        </Form>
+    );
 }
