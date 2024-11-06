@@ -1,0 +1,102 @@
+{
+   "Layout": {
+      "Navigation": {
+         "tagLine": "Discover Hidden Havens",
+         "signUp": "Sign up",
+         "logIn": "Log in",
+         "profile": "Profile",
+         "bookings": "Bookings",
+         "logOut": "Log out",
+         "wallet": "Wallet"
+      },
+      "SearchBar": {
+         "location": "Where do you want to stay",
+         "adult": {
+            "header": "adult",
+            "headerPlural": "adults",
+            "label": "Adults"
+         },
+         "children": {
+            "header": "children",
+            "headerPlural": "child",
+            "label": "Children"
+         },
+         "room": {
+            "header": "room",
+            "headerPlural": "rooms",
+            "label": "Rooms"
+         },
+         "search": "Search"
+      }
+   },
+   "HomePage": {
+      "explore": "Explore Indonesia",
+      "popular": "Popular Properties",
+      "map": "Search Properties by Maps"
+   },
+   "UserProfile": {
+      "title": "User Profile",
+      "ProfilePicture": {
+         "edit": "Edit",
+         "header": "Change Profile Picture",
+         "description": "Make changes to your profile picture here. Click save when you're done",
+         "profilePicture": "Profile Picture",
+         "save": "Save"
+      },
+      "ReferralCode": {
+         "title": "Referral Code",
+         "header": "Your Referral Code",
+         "description": "Share your code to friends to redeem points",
+         "toastSuccess": "Copied to clipboard!",
+         "toastError": "Copy to clipboard failed!"
+      },
+      "RedeemCode": {
+         "title": "Redeem Code",
+         "header": "Redeem Referral Code",
+         "description": "Redeem a code from friend here",
+         "code": "Code:",
+         "placeholder": "Enter 12 digit code",
+         "placeholderRedeemed": "Code redeemed",
+         "redeem": "Redeem",
+         "toastSuccess": "Successfully redeemed the code!",
+         "toastDescription": "Earned 10000 points!",
+         "toastError": "Failed to redeem the code..."
+      },
+      "Wallet": {
+         "trigger": "Your Wallet",
+         "header": "Your Oasis Wallet",
+         "balance": "Balance",
+         "points": "Points",
+         "close": "Close"
+      },
+      "edit": "Edit",
+      "change": "Change",
+      "Email": {
+         "email": "Email",
+         "change": "Change",
+         "header": "Change Email",
+         "description": "Make changes to your email here. Click save when you're done",
+         "save": "Save"
+      },
+      "name": "Name",
+      "namePlaceholder": "Your Name",
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmNewPassword": "Confirm New Password",
+      "language": {
+         "label": "Language",
+         "placeholder": "Select Language",
+         "english": "English",
+         "indonesia": "Indonesia"
+      },
+      "currency": {
+         "label": "Currency",
+         "placeholder": "Select Currency",
+         "idr": "IDR",
+         "usd": "USD"
+      },
+      "update": "Update",
+      "error": "Something went wrong!",
+      "confirmEmail": "Confirming your verification"
+   }
+}

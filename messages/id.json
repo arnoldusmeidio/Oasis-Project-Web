@@ -1,0 +1,102 @@
+{
+   "Layout": {
+      "Navigation": {
+         "tagLine": "Discover Hidden Havens",
+         "signUp": "Daftar",
+         "logIn": "Masuk",
+         "profile": "Profil",
+         "bookings": "Pesanan",
+         "logOut": "Keluar",
+         "wallet": "Dompet"
+      },
+      "SearchBar": {
+         "location": "Ingin menginap di mana?",
+         "adult": {
+            "header": "dewasa",
+            "headerPlural": "dewasa",
+            "label": "Dewasa"
+         },
+         "children": {
+            "header": "anak",
+            "headerPlural": "anak",
+            "label": "Anak"
+         },
+         "room": {
+            "header": "kamar",
+            "headerPlural": "kamar",
+            "label": "Kamar"
+         },
+         "search": "Cari"
+      }
+   },
+   "HomePage": {
+      "explore": "Jelajahi Indonesia",
+      "popular": "Properti Terpopuler",
+      "map": "Cari Properti Dengan Peta"
+   },
+   "UserProfile": {
+      "title": "Profil User",
+      "ProfilePicture": {
+         "edit": "Ubah",
+         "header": "Ganti Foto Profil",
+         "description": "Lakukan perubahan pada foto profil Anda di sini. Klik simpan jika sudah selesai",
+         "profilePicture": "Foto Profil",
+         "save": "Simpan"
+      },
+      "ReferralCode": {
+         "title": "Kode Referal",
+         "header": "Kode Referal Anda",
+         "description": "Bagikan kode Anda kepada teman untuk menukarkan poin",
+         "toastSuccess": "Disalin ke clipboard!",
+         "toastError": "Gagal menyalin ke clipboard!"
+      },
+      "RedeemCode": {
+         "title": "Tukarkan Kode",
+         "header": "Tukarkan Kode Referal",
+         "description": "Tukarkan kode dari teman di sini",
+         "code": "Kode:",
+         "placeholder": "Masukkan kode 12 digit",
+         "placeholderRedeemed": "Kode sudah ditukarkan",
+         "redeem": "Tukarkan",
+         "toastSuccess": "Berhasil menukarkan kode!",
+         "toastDescription": "Mendapatkan 10000 poin!",
+         "toastError": "Gagal menukarkan kode..."
+      },
+      "Wallet": {
+         "trigger": "Dompet Anda",
+         "header": "Dompet Oasis Anda",
+         "balance": "Saldo",
+         "points": "Poin",
+         "close": "Tutup"
+      },
+      "edit": "Ubah",
+      "change": "Ganti",
+      "Email": {
+         "email": "Email",
+         "change": "Ubah",
+         "header": "Ubah Email",
+         "description": "Lakukan perubahan pada email Anda di sini. Klik simpan jika sudah selesai",
+         "save": "Simpan"
+      },
+      "name": "Nama",
+      "namePlaceholder": "Nama Anda",
+      "currentPassword": "Kata Sandi Saat Ini",
+      "newPassword": "Kata Sandi Baru",
+      "confirmNewPassword": "Konfirmasi Kata Sandi Baru",
+      "language": {
+         "label": "Bahasa",
+         "placeholder": "Pilih Bahasa",
+         "english": "Inggris",
+         "indonesia": "Indonesia"
+      },
+      "currency": {
+         "label": "Mata Uang",
+         "placeholder": "Pilih Mata Uang",
+         "idr": "IDR",
+         "usd": "USD"
+      },
+      "update": "Perbarui",
+      "error": "Terjadi kesalahan!",
+      "confirmEmail": "Mengonfirmasi verifikasi Anda"
+   }
+}
