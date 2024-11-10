@@ -1,0 +1,9 @@
+{
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "destination": "https://oasis-resort.xyz/$1",
+            "permanent": true
+        }
+    ]
+}
